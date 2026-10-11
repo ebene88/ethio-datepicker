@@ -1,0 +1,116 @@
+.datepicker-wrapper {
+  position: relative;
+  width: 100%;
+}
+.datepicker-label {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+.required {
+  color: red;
+}
+.datepicker-input {
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.calendar-container {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 2px;
+  width: 100%;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  z-index: 50;
+}
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 8px;
+  background: #f0f0f0;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+.calendar-header-labels span {
+  cursor: pointer;
+  margin-left: 4px;
+  margin-right: 4px;
+}
+.month-selector,
+.year-selector {
+  display: grid;
+  gap: 2px;
+  padding: 4px;
+  max-height: 180px;
+  overflow-y: auto;
+}
+.month-selector {
+  grid-template-columns: repeat(3, 1fr);
+}
+.year-selector {
+  grid-template-columns: repeat(4, 1fr);
+}
+.day-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1px;
+  padding: 4px;
+  font-size: 0.875rem;
+  text-align: center;
+}
+.day-header {
+  font-weight: 500;
+  color: #555;
+}
+.day-cell {
+  padding: 4px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.day-cell:hover {
+  background-color: #dbeafe;
+}
+.day-cell.today {
+  background-color: #bfdbfe;
+}
+.day-cell.selected {
+  background-color: #3b82f6;
+  color: #fff;
+}
+.time-inputs {
+  display: flex;
+  gap: 4px;
+  margin-top: 4px;
+  justify-content: center;
+}
+
+.time-input {
+  width: 30px;
+  text-align: center;
+  padding: 2px 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.time-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-left: 1px solid #ccc; /* vertical line */
+  padding-left: 16px;
+}
+
+.calendar-with-time {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px; /* space between calendar and time */
+}
+
+.day-grid-wrapper {
+  flex: 1;
+}
