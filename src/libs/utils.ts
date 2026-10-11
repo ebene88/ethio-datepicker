@@ -1,27 +1,27 @@
-import { ClassValue } from "class-variance-authority/dist/types";
-import clsx from "clsx";
-import { twMerge } from "tailwind-merge";
 import { convertToEth, convertToGreg } from "./date-time";
 
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
+export type ClassValue = string | number | boolean | undefined | null;
+
+export function cn(...inputs: (ClassValue | ClassValue[])[]): string {
+  const classes: string[] = [];
+  for (const input of inputs) {
+    if (!input) continue;
+    if (Array.isArray(input)) {
+      const nested = cn(...input);
+      if (nested) classes.push(nested);
+    } else if (typeof input === "string" || typeof input === "number") {
+      classes.push(String(input));
+    }
+  }
+  return classes.join(" ");
 }
 
-// export const formatDate = (date: Date | null) => {
-//   if (!date) return "";
-//   const eth = convertToEth({
-//     day: date.getDate(),
-//     month: date.getMonth() + 1,
-//     year: date.getFullYear(),
-//   });
 
-//   const day = String(eth.day).padStart(2, "0"); // Add leading zero
-//   const month = String(eth.month).padStart(2, "0"); // Add leading zero
-//   const year = String(eth.year); // Leave year as it is
-
-//   return `${day}/${month}/${year}`;
-// };
-export const formatDate = (date: Date | null, showTime?: boolean) => {
+export const formatDate = (
+  date: Date | null,
+  showTime?: boolean,
+  localeData?: { am?: string; pm?: string }
+) => {
   if (!date) return "";
   const eth = convertToEth({
     day: date.getDate(),
@@ -34,10 +34,15 @@ export const formatDate = (date: Date | null, showTime?: boolean) => {
     .padStart(2, "0")}/${eth.year}`;
 
   if (showTime) {
-    result += ` ${date.getHours().toString().padStart(2, "0")}:${date
-      .getMinutes()
-      .toString()
-      .padStart(2, "0")}:${date.getSeconds().toString().padStart(2, "0")}`;
+    const hours24 = date.getHours();
+    const isPM = hours24 >= 12;
+    const hours12 = hours24 % 12 === 0 ? 12 : hours24 % 12;
+    const periodLabel = isPM ? "PM" : "AM";
+    const hh = hours12.toString().padStart(2, "0");
+    const mm = date.getMinutes().toString().padStart(2, "0");
+    const ss = date.getSeconds().toString().padStart(2, "0");
+
+    result += ` ${hh}:${mm}:${ss} ${periodLabel}`;
   }
 
   return result;

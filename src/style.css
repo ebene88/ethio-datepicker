@@ -1,116 +1,555 @@
+/* ==========================================================
+   Ethiopian Calendar Picker Styles
+   Customizable Theme Variables & Dark Mode Support
+   ========================================================== */
+
+:root {
+  --ethio-primary: #2563eb;
+  --ethio-primary-hover: #1d4ed8;
+  --ethio-primary-light: #eff6ff;
+  --ethio-primary-ring: rgba(37, 99, 235, 0.15);
+  --ethio-bg: #ffffff;
+  --ethio-bg-card: #ffffff;
+  --ethio-bg-hover: #f1f5f9;
+  --ethio-text: #0f172a;
+  --ethio-text-muted: #64748b;
+  --ethio-border: #cbd5e1;
+  --ethio-border-light: #f1f5f9;
+  --ethio-radius: 8px;
+  --ethio-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+  --ethio-danger: #ef4444;
+}
+
+/* Explicit dark mode: triggered when .dark or [data-theme="dark"] is applied on wrapper or any parent */
+.dark .datepicker-wrapper,
+[data-theme="dark"] .datepicker-wrapper,
+.datepicker-wrapper.dark,
+.datepicker-wrapper[data-theme="dark"] {
+  --ethio-primary: #3b82f6;
+  --ethio-primary-hover: #60a5fa;
+  --ethio-primary-light: #1e293b;
+  --ethio-primary-ring: rgba(59, 130, 246, 0.25);
+  --ethio-bg: #0f172a;
+  --ethio-bg-card: #1e293b;
+  --ethio-bg-hover: #334155;
+  --ethio-text: #f8fafc;
+  --ethio-text-muted: #94a3b8;
+  --ethio-border: #334155;
+  --ethio-border-light: #334155;
+  --ethio-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+}
+
+/* Explicit light mode override if needed */
+.light .datepicker-wrapper,
+[data-theme="light"] .datepicker-wrapper,
+.datepicker-wrapper.light,
+.datepicker-wrapper[data-theme="light"] {
+  --ethio-primary: #2563eb;
+  --ethio-primary-hover: #1d4ed8;
+  --ethio-primary-light: #eff6ff;
+  --ethio-primary-ring: rgba(37, 99, 235, 0.15);
+  --ethio-bg: #ffffff;
+  --ethio-bg-card: #ffffff;
+  --ethio-bg-hover: #f1f5f9;
+  --ethio-text: #0f172a;
+  --ethio-text-muted: #64748b;
+  --ethio-border: #cbd5e1;
+  --ethio-border-light: #f1f5f9;
+  --ethio-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+}
+
 .datepicker-wrapper {
   position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: inherit;
+  color: var(--ethio-text);
+}
+
+.datepicker-label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--ethio-text);
+}
+
+.datepicker-label .required {
+  color: var(--ethio-danger);
+  margin-left: 3px;
+}
+
+/* Input Container & Input */
+.datepicker-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
   width: 100%;
 }
-.datepicker-label {
-  display: block;
-  margin-bottom: 4px;
-  font-weight: 600;
-}
-.required {
-  color: red;
-}
+
 .datepicker-input {
   width: 100%;
-  padding: 6px 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  height: 40px;
+  padding: 0 58px 0 12px;
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: 0.875rem;
+  color: var(--ethio-text);
+  background-color: var(--ethio-bg);
+  border: 1px solid var(--ethio-border);
+  border-radius: var(--ethio-radius);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
   cursor: pointer;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
 }
+
+.datepicker-input::placeholder {
+  color: var(--ethio-text-muted);
+}
+
+.datepicker-input:hover:not(:disabled) {
+  border-color: var(--ethio-text-muted);
+}
+
+.datepicker-input:focus {
+  border-color: var(--ethio-primary);
+  box-shadow: 0 0 0 3px var(--ethio-primary-ring);
+}
+
+.datepicker-input.has-error {
+  border-color: var(--ethio-danger);
+}
+
+.datepicker-input.has-error:focus {
+  border-color: var(--ethio-danger);
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+}
+
+.datepicker-input:disabled {
+  background-color: var(--ethio-bg-hover);
+  color: var(--ethio-text-muted);
+  border-color: var(--ethio-border);
+  cursor: not-allowed;
+}
+
+/* Action buttons inside input */
+.datepicker-clear-btn {
+  position: absolute;
+  right: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: 4px;
+  margin: 0;
+  cursor: pointer;
+  color: var(--ethio-text-muted);
+  border-radius: 50%;
+  transition: color 0.15s, background-color 0.15s;
+}
+
+.datepicker-clear-btn:hover {
+  color: var(--ethio-danger);
+  background-color: var(--ethio-bg-hover);
+}
+
+.datepicker-icon-btn {
+  position: absolute;
+  right: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: 4px;
+  margin: 0;
+  cursor: pointer;
+  color: var(--ethio-text-muted);
+  border-radius: 4px;
+  transition: color 0.15s ease;
+}
+
+.datepicker-icon-btn:hover {
+  color: var(--ethio-primary);
+}
+
+.datepicker-icon-btn:disabled {
+  color: var(--ethio-border);
+  cursor: not-allowed;
+}
+
+/* Dropdown Calendar Container */
 .calendar-container {
   position: absolute;
-  top: 100%;
+  top: calc(100% + 5px);
   left: 0;
-  margin-top: 2px;
-  width: 100%;
-  background: #fff;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  z-index: 50;
+  z-index: 1000;
+  min-width: 288px;
+  width: max-content;
+  max-width: calc(100vw - 2rem);
+  background: var(--ethio-bg-card);
+  color: var(--ethio-text);
+  border: 1px solid var(--ethio-border-light);
+  border-radius: 12px;
+  box-shadow: var(--ethio-shadow);
+  padding: 12px;
+  box-sizing: border-box;
+  animation: calendarFadeIn 0.15s ease-out;
 }
+
+@keyframes calendarFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Header */
 .calendar-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 4px 8px;
-  background: #f0f0f0;
-  font-size: 0.875rem;
-  font-weight: 600;
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--ethio-border-light);
 }
-.calendar-header-labels span {
-  cursor: pointer;
-  margin-left: 4px;
-  margin-right: 4px;
-}
-.month-selector,
-.year-selector {
-  display: grid;
-  gap: 2px;
-  padding: 4px;
-  max-height: 180px;
-  overflow-y: auto;
-}
-.month-selector {
-  grid-template-columns: repeat(3, 1fr);
-}
-.year-selector {
-  grid-template-columns: repeat(4, 1fr);
-}
-.day-grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 1px;
-  padding: 4px;
-  font-size: 0.875rem;
-  text-align: center;
-}
-.day-header {
-  font-weight: 500;
-  color: #555;
-}
-.day-cell {
-  padding: 4px;
-  border-radius: 4px;
-  cursor: pointer;
-}
-.day-cell:hover {
-  background-color: #dbeafe;
-}
-.day-cell.today {
-  background-color: #bfdbfe;
-}
-.day-cell.selected {
-  background-color: #3b82f6;
-  color: #fff;
-}
-.time-inputs {
+
+.calendar-header-labels {
   display: flex;
+  align-items: center;
   gap: 4px;
-  margin-top: 4px;
-  justify-content: center;
 }
 
-.time-input {
+.calendar-nav-btn {
   width: 30px;
-  text-align: center;
-  padding: 2px 4px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-.time-wrapper {
+  height: 30px;
   display: flex;
-  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  border-left: 1px solid #ccc; /* vertical line */
-  padding-left: 16px;
+  border: 1px solid var(--ethio-border-light);
+  background: var(--ethio-bg-card);
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1.25rem;
+  line-height: 1;
+  color: var(--ethio-text);
+  transition: all 0.15s ease;
 }
 
+.calendar-nav-btn:hover:not(:disabled) {
+  background: var(--ethio-bg-hover);
+  border-color: var(--ethio-border);
+}
+
+.calendar-nav-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.calendar-picker-btn {
+  background: none;
+  border: 1px solid transparent;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--ethio-text);
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: all 0.15s ease;
+}
+
+.calendar-picker-btn:hover,
+.calendar-picker-btn.active {
+  background: var(--ethio-primary-light);
+  color: var(--ethio-primary);
+}
+
+/* Calendar Body & Layout */
 .calendar-with-time {
   display: flex;
-  align-items: flex-start;
-  gap: 16px; /* space between calendar and time */
+  align-items: stretch;
+  gap: 12px;
 }
 
 .day-grid-wrapper {
   flex: 1;
+}
+
+.day-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 34px);
+  gap: 4px;
+  justify-content: center;
+}
+
+.day-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 28px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--ethio-text-muted);
+}
+
+.day-cell {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 7px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--ethio-text);
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.12s ease;
+  user-select: none;
+}
+
+.day-cell:hover:not(.selected):not(.disabled) {
+  background-color: var(--ethio-bg-hover);
+}
+
+.day-cell.today:not(.selected) {
+  background-color: var(--ethio-primary-light);
+  color: var(--ethio-primary);
+  border-color: var(--ethio-primary);
+  font-weight: 600;
+}
+
+.day-cell.selected {
+  background-color: var(--ethio-primary) !important;
+  color: #ffffff !important;
+  font-weight: 600;
+  box-shadow: 0 2px 4px rgba(37, 99, 235, 0.25);
+}
+
+.day-cell.disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Month and Year Selectors */
+.month-selector,
+.year-selector {
+  display: grid;
+  gap: 6px;
+  padding: 4px 2px;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.month-selector {
+  grid-template-columns: repeat(3, 1fr);
+  min-width: 260px;
+}
+
+.year-selector {
+  grid-template-columns: repeat(4, 1fr);
+  min-width: 260px;
+}
+
+.selector-cell {
+  padding: 8px 4px;
+  font-family: inherit;
+  font-size: 0.825rem;
+  font-weight: 500;
+  text-align: center;
+  border: 1px solid var(--ethio-border-light);
+  border-radius: 7px;
+  background: var(--ethio-bg-card);
+  color: var(--ethio-text);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.selector-cell:hover:not(.selected) {
+  background: var(--ethio-bg-hover);
+  border-color: var(--ethio-border);
+}
+
+.selector-cell.selected {
+  background: var(--ethio-primary);
+  border-color: var(--ethio-primary);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* Time Picker Section */
+.time-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-left: 1px solid var(--ethio-border-light);
+  padding-left: 12px;
+  margin-left: 4px;
+  min-width: 136px;
+}
+
+.time-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ethio-text-muted);
+  margin-bottom: 8px;
+}
+
+.time-inputs-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.time-digits {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+}
+
+.time-input {
+  width: 34px;
+  height: 32px;
+  text-align: center;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ethio-text);
+  background: var(--ethio-bg);
+  border: 1px solid var(--ethio-border);
+  border-radius: 6px;
+  outline: none;
+  box-sizing: border-box;
+  padding: 2px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.time-input:focus {
+  border-color: var(--ethio-primary);
+  box-shadow: 0 0 0 2px var(--ethio-primary-ring);
+}
+
+.time-separator {
+  color: var(--ethio-text-muted);
+  font-weight: 700;
+  font-size: 0.85rem;
+  user-select: none;
+}
+
+/* AM/PM Segmented Control */
+.time-period-selector {
+  display: flex;
+  width: 100%;
+  max-width: 104px;
+  border-radius: 6px;
+  background: var(--ethio-bg);
+  border: 1px solid var(--ethio-border);
+  overflow: hidden;
+}
+
+.time-period-btn {
+  flex: 1;
+  padding: 4px 6px;
+  font-family: inherit;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: var(--ethio-text-muted);
+  transition: all 0.15s ease;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.time-period-btn:hover:not(.active) {
+  background: var(--ethio-bg-hover);
+  color: var(--ethio-text);
+}
+
+.time-period-btn.active {
+  background: var(--ethio-primary);
+  color: #ffffff;
+}
+
+/* Calendar Footer Actions */
+.calendar-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 8px;
+  margin-top: 8px;
+  border-top: 1px solid var(--ethio-border-light);
+  gap: 8px;
+}
+
+.calendar-footer-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.calendar-footer-btn {
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ethio-primary);
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.calendar-footer-btn:hover {
+  background-color: var(--ethio-primary-light);
+}
+
+.calendar-footer-btn.clear {
+  color: var(--ethio-text-muted);
+}
+
+.calendar-footer-btn.clear:hover {
+  color: var(--ethio-danger);
+  background-color: rgba(239, 68, 68, 0.08);
+}
+
+.calendar-footer-btn.apply {
+  background-color: var(--ethio-primary);
+  color: #ffffff;
+  padding: 4px 12px;
+}
+
+.calendar-footer-btn.apply:hover {
+  background-color: var(--ethio-primary-hover);
+}
+
+/* Helper text and Error message */
+.datepicker-helper-text {
+  font-size: 0.775rem;
+  color: var(--ethio-text-muted);
+  margin-top: 4px;
+}
+
+.datepicker-helper-text.error {
+  color: var(--ethio-danger);
 }

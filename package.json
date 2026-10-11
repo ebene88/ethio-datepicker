@@ -1,35 +1,63 @@
 {
-  "name": "@react-form/ethiopian-calendar-picker",
+  "name": "ethio-datepicker",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "Customizable, form-ready Ethiopian calendar picker with Amharic, Afaan Oromoo, and English localization and bidirectional Gregorian conversion.",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.cjs.js"
+    },
+    "./style.css": "./dist/index.css"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "ethio-datepicker",
+    "ethiopian-calendar",
+    "ethiopian-calendar-picker",
+    "amharic",
+    "oromo",
+    "react",
+    "react-hook-form",
+    "date-picker"
+  ],
+  "license": "MIT",
+  "sideEffects": [
+    "*.css"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "vite --config playground/vite.config.ts --host",
-    "build": "rollup -c",
+    "build": "node -e \"fs.rmSync('dist', {recursive: true, force: true})\" && rollup -c rollup.config.mjs",
     "prepublishOnly": "npm run build"
   },
-  "author": "",
-  "license": "ISC",
-  "description": "",
-  "dependencies": {
-    "@radix-ui/react-label": "^2.1.8",
-    "@radix-ui/react-slot": "^1.2.4",
-    "class-variance-authority": "^0.7.1",
-    "i18next": "^25.6.3",
-    "i18next-browser-languagedetector": "^8.2.0",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
-    "react-hook-form": "^7.66.0",
-    "react-i18next": "^16.3.5",
-    "tailwind-merge": "^3.4.0"
+  "peerDependencies": {
+    "react": ">=18.0.0 || >=19.0.0",
+    "react-dom": ">=18.0.0 || >=19.0.0",
+    "react-hook-form": ">=7.0.0"
+  },
+  "peerDependenciesMeta": {
+    "react-hook-form": {
+      "optional": true
+    }
   },
   "devDependencies": {
-    "@types/i18next": "^12.1.0",
+    "@rollup/plugin-alias": "^6.0.0",
     "@types/node": "^24.10.0",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
     "@vitejs/plugin-react": "^5.1.0",
     "postcss": "^8.5.6",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-hook-form": "^7.66.0",
     "rollup": "^4.53.1",
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-typescript2": "^0.36.0",
