@@ -1,4 +1,4 @@
-# 🇪🇹 ethio-datepicker
+# 🇪🇹 ethiopian-calendar-picker
 
 A form-ready, responsive, and customizable **Ethiopian Calendar Date Picker** for React.
 
@@ -14,17 +14,17 @@ A form-ready, responsive, and customizable **Ethiopian Calendar Date Picker** fo
 ## Installation
 
 ```bash
-npm install ethio-datepicker
+npm install ethiopian-calendar-picker
 # or
-pnpm add ethio-datepicker
+pnpm add ethiopian-calendar-picker
 # or
-yarn add ethio-datepicker
+yarn add ethiopian-calendar-picker
 ```
 
 Import the styles in your main entry file (e.g. `main.tsx` or `_app.tsx`):
 
 ```tsx
-import "ethio-datepicker/style.css";
+import "ethiopian-calendar-picker/style.css";
 ```
 
 ---
@@ -35,8 +35,8 @@ import "ethio-datepicker/style.css";
 
 ```tsx
 import React, { useState } from "react";
-import { EthioDatePicker } from "ethio-datepicker";
-import "ethio-datepicker/style.css";
+import { EthioDatePicker } from "ethiopian-calendar-picker";
+import "ethiopian-calendar-picker/style.css";
 
 export function MyComponent() {
   const [date, setDate] = useState<Date | null>(new Date());
@@ -56,7 +56,7 @@ export function MyComponent() {
 
 ```tsx
 import { useForm, FormProvider } from "react-hook-form";
-import { EthioDatePicker } from "ethio-datepicker";
+import { EthioDatePicker } from "ethiopian-calendar-picker";
 
 export function FormExample() {
   const methods = useForm({
@@ -124,7 +124,7 @@ export function FormExample() {
 You can register any language globally using `registerCalendarLocale`:
 
 ```tsx
-import { registerCalendarLocale, EthioDatePicker } from "ethio-datepicker";
+import { registerCalendarLocale, EthioDatePicker } from "ethiopian-calendar-picker";
 
 registerCalendarLocale("ti", {
   name: "Tigrinya",
@@ -159,7 +159,7 @@ import {
   convertToGreg,
   formatDate,
   getDaysInMonth,
-} from "ethio-datepicker";
+} from "ethiopian-calendar-picker";
 
 // Gregorian to Ethiopian
 const eth = convertToEth({ day: 11, month: 9, year: 2024 });
