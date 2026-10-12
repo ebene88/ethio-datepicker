@@ -2,6 +2,15 @@
   "name": "ethio-datepicker",
   "version": "1.0.0",
   "description": "Customizable, form-ready Ethiopian calendar picker with Amharic, Afaan Oromoo, and English localization and bidirectional Gregorian conversion.",
+  "author": "ebene88 <abenezernachew50@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ebene88/ethio-datepicker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ebene88/ethio-datepicker/issues"
+  },
+  "homepage": "https://github.com/ebene88/ethio-datepicker#readme",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
