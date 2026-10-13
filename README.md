@@ -197,6 +197,12 @@ Override CSS custom properties in your stylesheet:
 
 ---
 
+## Acknowledgements
+
+- Special thanks to [@yaredtaye](https://github.com/yaredtaye) for [react-native-ethiopian-calendar](https://github.com/yaredtaye/react-native-ethiopian-calendar). The Ethiopian ↔ Gregorian calendar conversion algorithms in this library are adapted from their implementation.
+
+---
+
 ## License
 
 MIT © 2026
